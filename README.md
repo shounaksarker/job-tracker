@@ -7,5 +7,5 @@
 - Firebase
 
 ## testing credentials:
-email: test@gmail.com
-password: asdasd
+- email: test@gmail.com
+- password: asdasd
