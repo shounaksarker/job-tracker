@@ -68,16 +68,15 @@ const Auth = () => {
   /**--------------------------------------------
    *!               Login
    *---------------------------------------------**/
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
+    e.preventDefault();
     signInWithEmailAndPassword(auth, user.email, user.password)
-      .then((res) => {
+      .then(async (res) => {
         const u = res.user;
         // last login update
-        update(ref(db, `${url}/${u.uid}`), {
+        await update(ref(db, `${url}/${u.uid}`), {
           last_login: new Date(),
         });
-        alert("login done");
-
         // get data from dtabase
         const dbRef = ref(getDatabase());
         get(child(dbRef, `${url}/${u.uid}`))
@@ -99,9 +98,8 @@ const Auth = () => {
       })
       .catch((error) => {
         console.log(error);
-        alert(error.messgae);
+        alert(error);
       });
-    e.preventDefault();
   };
 
   return (
